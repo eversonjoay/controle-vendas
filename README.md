@@ -7,7 +7,6 @@ Aplicação para gestão de vendas de artesanato
 
 ## Protótipo
 
-https://www.figma.com/file/jUcpVtq2nlvaouh6gXbzCK/listando?type=design&node-id=46%3A43&t=742SZySx5nBEfi5p-1
 
 ## Checklist
 
