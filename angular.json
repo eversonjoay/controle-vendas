@@ -25,8 +25,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -132,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "controle-vendas"
+  "defaultProject": "controle-vendas",
+  "cli": {
+    "analytics": "869396ea-3729-4cb4-9b0f-ac54d9b79cd6"
+  }
 }
