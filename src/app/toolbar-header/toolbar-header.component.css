@@ -3,3 +3,33 @@
   width: 100%;
   max-width: 70px;
 }
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover, a:active {
+  color: lightgray;
+}
+
+.menu-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+mat-toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  z-index: 999;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+ul{
+  display:flex;
+}

@@ -16,6 +16,7 @@ import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatButtonModule,
     FormsModule,
     MatFormFieldModule,
-    NgIf
+    NgIf,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
