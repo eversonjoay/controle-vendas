@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Pedido } from '../model/Pedido';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Shared } from '../util/Shared';
+import { CadastroPedidoService } from './cadastro-pedido.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-pedido',
@@ -8,18 +11,54 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./cadastro-pedido.component.css']
 })
 export class CadastroPedidoComponent {
-  pedido: Pedido = {id: null, nome: '', valor: null};
+  @ViewChild('form') form!: NgForm;
+
+  pedido: Pedido;
+  pedidos: Pedido[];
+  editMode: boolean = false;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cadastroPedidoService: CadastroPedidoService
   ) {}
 
   ngOnInit(): void {
-    let idPedido: number = +this.route.snapshot.paramMap.get('id')!;
-    let nomePedido: string = this.route.snapshot.paramMap.get('nome')!;
-    let valorPedido: number = +this.route.snapshot.paramMap.get('valor')!;
+    Shared.initilizeWebStorage();
 
-    this.pedido = {id: idPedido, nome: nomePedido, valor: valorPedido};
+    this.initPedido();
+
+    let idPedido: number = +this.route.snapshot.paramMap.get('id')!;
+
+    if (idPedido != null) {
+      this.pedidos = this.cadastroPedidoService.getAll().filter((p) => {
+        return p.id == idPedido;
+      });
+
+      if (this.pedidos.length > 0) {
+        this.pedido = this.pedidos[0];
+        this.editMode = true;
+      }
+    } else {
+      this.pedido.id = this.cadastroPedidoService.nextId();
+    }
   }
+
+  initPedido() {
+    this.pedido = {id: null, nome: '', valor: null}
+  }
+
+  onSubmit() {
+    if (this.editMode) {
+      this.cadastroPedidoService.update(this.pedido);
+    } else {
+      this.cadastroPedidoService.save(this.pedido);
+    }
+
+    this.editMode = false;
+    this.form.reset();
+    this.initPedido();
+    this.pedidos = this.cadastroPedidoService.getAll();
+    window.alert('Pedido salvo!');
+  }
+
 }
