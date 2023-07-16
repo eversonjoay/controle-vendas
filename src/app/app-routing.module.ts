@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {path: '', component: ListagemPedidosComponent},
   {path: 'cadastro-pedido', component: CadastroPedidoComponent},
-  {path: 'cadastro-pedido/:id/:nome/:valor', component: CadastroPedidoComponent}
+  {path: 'cadastro-pedido/:id', component: CadastroPedidoComponent}
 ];
 
 @NgModule({

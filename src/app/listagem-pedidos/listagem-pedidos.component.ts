@@ -1,6 +1,8 @@
 import { Pedido } from './../model/Pedido';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Shared } from '../util/Shared';
+import { CadastroPedidoService } from './../cadastro-pedido/cadastro-pedido.service';
 
 @Component({
   selector: 'app-listagem-pedidos',
@@ -9,18 +11,20 @@ import { Router } from '@angular/router';
 })
 export class ListagemPedidosComponent {
 
-  pedidos: Pedido[] = [
-    {id: 1, nome: 'Everson', valor: 100},
-    {id: 2, nome: 'Eliane', valor: 150},
-    {id: 3, nome: 'Ricardo', valor: 55}
-  ];
+  pedidos: Pedido[];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private cadastroPedidoService: CadastroPedidoService
   ) {}
 
+  ngOnInit(): void {
+    Shared.initilizeWebStorage();
+    this.pedidos = this.cadastroPedidoService.getAll();
+  }
+
   onClickItem(pedido) {
-    this.router.navigate(['cadastro-pedido/', pedido.id, pedido.nome, pedido.valor]);
+    this.router.navigate(['cadastro-pedido/', pedido.id]);
   }
 
 }
