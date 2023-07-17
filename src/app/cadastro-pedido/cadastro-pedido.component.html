@@ -1,4 +1,4 @@
-<form #form="ngForm" (submit)="onSubmit()" style="margin: 20px;">
+<form #form="ngForm" (submit)="onSubmit()" style="margin: 20px">
   <mat-form-field style="width: 200px" *ngIf="this.pedido.id">
     <mat-label>Num. Pedido</mat-label>
     <input
@@ -69,6 +69,21 @@
     <div class="red-text" *ngIf="valor.errors?.required && valor.touched">
       Por favor, o valor é obrigatório.
     </div>
+  </div>
+
+  <div>
+    <mat-form-field style="width: 200px">
+      <mat-label>Situação do pagamento</mat-label>
+      <mat-select>
+        <mat-option
+          *ngFor="let s of situacaoPagamento"
+          [value]="s"
+          [(ngModel)]="this.pedido.pagamento"
+        >
+          {{ s }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <div mat-dialog-actions>
