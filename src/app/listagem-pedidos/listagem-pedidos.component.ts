@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Shared } from '../util/Shared';
 import { CadastroPedidoService } from './../cadastro-pedido/cadastro-pedido.service';
+import { PedidoPromiseService } from '../services/pedido-promise.service';
 
 @Component({
   selector: 'app-listagem-pedidos',
@@ -15,12 +16,17 @@ export class ListagemPedidosComponent {
 
   constructor(
     private router: Router,
-    private cadastroPedidoService: CadastroPedidoService
+    private cadastroPedidoService: CadastroPedidoService,
+    private pedidoPromiseService: PedidoPromiseService
   ) {}
 
   ngOnInit(): void {
     Shared.initilizeWebStorage();
-    this.pedidos = this.cadastroPedidoService.getAll();
+    this.pedidoPromiseService.getAll().then((p: Pedido[]) => {
+      this.pedidos = p;
+    }).catch((e) => {
+      this.pedidos = this.cadastroPedidoService.getAll();
+    })
   }
 
   onClickItem(pedido) {

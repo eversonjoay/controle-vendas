@@ -1,0 +1,19 @@
+{
+  "pedidos": [
+    {
+      "id": 1,
+      "nome": "Ricardo Godoz",
+      "valor": 256
+    },
+    {
+      "id": 2,
+      "nome": "Jonathan Nau",
+      "valor": 167
+    },
+    {
+      "id": 3,
+      "nome": "Everson Joay",
+      "valor": 85
+    }
+  ]
+}
