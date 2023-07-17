@@ -2,6 +2,7 @@
 Aplicação para gestão de vendas de artesanato
 
 ## Endereço de Deploy
+https://eversonjoay.github.io/controle-vendas/
 
 ## Apresentação do Trabalho
 
