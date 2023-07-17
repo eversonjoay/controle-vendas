@@ -5,6 +5,7 @@ Aplicação para gestão de vendas de artesanato
 https://eversonjoay.github.io/controle-vendas/
 
 ## Apresentação do Trabalho
+https://youtu.be/z-Z5XlBhOZ8
 
 ## Protótipo
 
