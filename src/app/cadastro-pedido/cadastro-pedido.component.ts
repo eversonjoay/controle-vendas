@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Shared } from "../util/Shared";
 import { CadastroPedidoService } from "./cadastro-pedido.service";
 import { NgForm } from "@angular/forms";
+import { Constants } from "../util/constants";
 
 @Component({
   selector: "app-cadastro-pedido",
@@ -17,6 +18,8 @@ export class CadastroPedidoComponent {
   pedido: Pedido;
   pedidos: Pedido[];
   editMode: boolean = false;
+
+  situacaoPagamento: string[] = [Constants.NAO_PAGO, Constants.PAGO_PARCIAL ,Constants.PAGO];
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +34,7 @@ export class CadastroPedidoComponent {
 
     let idPedido: number = +this.route.snapshot.paramMap.get("id")!;
 
-    if (idPedido != null) {
+    if (idPedido > 0) {
       this.pedidoPromiseService
         .getById(idPedido)
         .then((p: Pedido) => {
@@ -47,13 +50,11 @@ export class CadastroPedidoComponent {
           }
         });
       this.editMode = true;
-    } else {
-      this.pedido.id = this.cadastroPedidoService.nextId();
     }
   }
 
   initPedido() {
-    this.pedido = { id: null, nome: "", valor: null };
+    this.pedido = { id: null, nome: "", valor: null, pagamento: '' };
   }
 
   onSubmit() {
@@ -67,6 +68,7 @@ export class CadastroPedidoComponent {
           this.cadastroPedidoService.update(this.pedido);
         });
     } else {
+      console.log(this.pedido);
       this.pedidoPromiseService
         .save(this.pedido)
         .then((p: Pedido) => {
