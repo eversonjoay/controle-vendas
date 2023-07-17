@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="mat-elevation-z10" fxLayout="row">
+  <img [src]="srcLogo" class="my-logo"/>
+  <span>{{title}}</span>
+  <span class="spacer"></span>
+
+  <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="20px" class="menu-items">
+      <li>
+        <a [routerLink]="['/']" style="padding-right: 20px;">Inicio</a>
+      </li>
+      <li>
+        <a [routerLink]="['/cadastro-pedido']">Novo pedido</a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>

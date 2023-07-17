@@ -1,0 +1,100 @@
+<form #form="ngForm" (submit)="onSubmit()" style="margin: 20px">
+  <mat-form-field style="width: 200px" *ngIf="this.pedido.id">
+    <mat-label>Num. Pedido</mat-label>
+    <input
+      matInput
+      disabled
+      name="input-id"
+      type="number"
+      [(ngModel)]="this.pedido.id"
+      #id="ngModel"
+    />
+  </mat-form-field>
+
+  <div>
+    <mat-form-field style="width: 200px">
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="this.pedido.nome"
+        name="input-nome"
+        pattern="^(\s?[A-ZÀ-Ú][a-zà-ú]*)+(\s[a-zà-ú]*)?(\s[A-ZÀ-Ú][a-zà-ú]*)+"
+        #nome="ngModel"
+        required
+      />
+      <button
+        *ngIf="this.pedido.nome"
+        matSuffix
+        mat-icon-button
+        aria-label="Limpar"
+        (click)="this.pedido.nome = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="red-text" [hidden]="nome.valid || nome.untouched">
+      Por favor, informe o seu nome completo.
+    </div>
+    <div class="red-text" *ngIf="nome.errors?.required && nome.touched">
+      Por favor, o nome completo é obrigatório.
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field style="width: 200px">
+      <mat-label>Valor</mat-label>
+      <input
+        matInput
+        name="input-valor"
+        type="number"
+        [(ngModel)]="this.pedido.valor"
+        required
+        #valor="ngModel"
+        min="0"
+      />
+      <button
+        *ngIf="this.pedido.valor"
+        matSuffix
+        mat-icon-button
+        aria-label="Limpar"
+        (click)="this.pedido.valor = null"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="red-text" [hidden]="valor.valid || valor.untouched">
+      Por favor, informe um valor válido.
+    </div>
+    <div class="red-text" *ngIf="valor.errors?.required && valor.touched">
+      Por favor, o valor é obrigatório.
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field style="width: 200px">
+      <mat-label>Situação do pagamento</mat-label>
+      <mat-select>
+        <mat-option
+          *ngFor="let s of situacaoPagamento"
+          [value]="s"
+          [(ngModel)]="this.pedido.pagamento"
+        >
+          {{ s }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!form.valid"
+    >
+      Salvar
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</form>

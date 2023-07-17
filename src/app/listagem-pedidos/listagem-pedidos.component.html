@@ -1,0 +1,20 @@
+<mat-table [dataSource]="pedidos" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>Num. Pedido</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="nome">
+    <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.nome}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="valor">
+    <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.valor | currency: "BRL"}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="pagamento">
+    <mat-header-cell *matHeaderCellDef>Sit. Pagamento</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.pagamento}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="['id', 'nome', 'valor', 'pagamento']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['id', 'nome', 'valor', 'pagamento']" (click)="onClickItem(row)"></mat-row>
+</mat-table>
