@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href=/controle-vendas/",
+    "ghpages": "angular-cli-ghpages --dir=dist/controle-vendas",
+    "deploy": "npm run build & npm run ghpages",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -40,6 +42,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/materialize-css": "^1.0.11",
     "@types/node": "~20.4.2",
+    "angular-cli-ghpages": "^0.6.2",
     "codelyzer": "~6.0.2",
     "jasmine-core": "~5.0.1",
     "jasmine-spec-reporter": "~7.0.0",
